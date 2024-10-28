@@ -1,12 +1,12 @@
-import  React from "react";
+// src/Components/ToDolist/ToDolist.jsx
+import React from "react";
 import ToDoItem from "../ToDoItem/ToDoItem";
 import AddTask from "../AddTask/AddTask";
-import { ToDoListStyled,DoWorkText } from "./styled";
+import { ToDoListStyled, DoWorkText } from "./styled";
 import UseTaskManager from "../../Hooks/UseTaskManager/UseTaskManager";
 
-
 const ToDolist = () => {
-  const { tasks, handleAddTask, handleDeleteTask,handleUpdateTask } = UseTaskManager();
+  const { tasks, handleAddTask, handleDeleteTask, handleUpdateTask } = UseTaskManager();
 
   return (
     <ToDoListStyled>
@@ -14,7 +14,7 @@ const ToDolist = () => {
       <AddTask onAdd={handleAddTask} />
       {tasks.map((task, index) => (
         <ToDoItem
-          key={index.id}
+          key={task.id} // Используем уникальный id
           task={task}
           onDelete={() => handleDeleteTask(index)}
           onUpdate={(updatedTask) => handleUpdateTask(index, updatedTask)}

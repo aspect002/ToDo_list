@@ -1,10 +1,12 @@
+// src/Hooks/UseTaskManager.js
 import { useState } from "react";
 
 const UseTaskManager = () => {
   const [tasks, setTasks] = useState([]);
 
   const handleAddTask = (task) => {
-    setTasks([...tasks, task]);
+    const newTask = { id: Date.now(), text: task, isCompleted: false }; // Добавляем isCompleted
+    setTasks([...tasks, newTask]);
   };
 
   const handleDeleteTask = (index) => {

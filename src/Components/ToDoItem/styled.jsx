@@ -12,10 +12,7 @@ export const ToDoItemStyled = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 10px;
-
   color: white;
-
-  display: flex;
   justify-content: space-between;
   align-items: center;
 `;
