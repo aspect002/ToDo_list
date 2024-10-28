@@ -1,12 +1,12 @@
-import React from "react"
-import ToDolist from "./Components/ToDoList/ToDoList"
+import React from "react";
+import ToDolist from "./Components/ToDoList/ToDoList";
 
 function App() {
   return (
-   <div>
-    <ToDolist/>
-   </div>
-  )
+    <div>
+      <ToDolist />
+    </div>
+  );
 }
 
-export default App
+export default App;
