@@ -1,17 +1,15 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const TaskText = styled.span`
-  // Ваши стили для обычного текста
-`;
+export const TaskText = styled.span``;
 
 export const CompletedTaskText = styled.span`
-  text-decoration: line-through; // Зачеркивание текста
-  color: #120f0f; // Цвет для завершенных задач
+  text-decoration: line-through;
+  color: #120f0f;
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
-  gap: 10px; /* Пробел между кнопками */
-  margin-left: auto; /* Сдвигает контейнер вправо */
-  align-items: center; /* Выравнивание кнопок по центру */
+  gap: 10px;
+  margin-left: auto;
+  align-items: center;
 `;

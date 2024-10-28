@@ -1,7 +1,6 @@
-// src/Components/ToDoItem/ToDoItem.jsx
 import React, { useState } from "react";
 import { ToDoItemStyled } from "./styled";
-import DoneTask from "../DoneTask/DoneTask"; // Импортируем новый компонент
+import DoneTask from "../DoneTask/DoneTask";
 import EditTask from "../EditTask/EditTask";
 
 const ToDoItem = ({ task, onDelete, onUpdate }) => {
@@ -13,16 +12,17 @@ const ToDoItem = ({ task, onDelete, onUpdate }) => {
         <EditTask
           task={task.text}
           onUpdate={(updatedText) => {
-            onUpdate({ ...task, text: updatedText }); // Обновляем текст задачи
-            setIsEditing(false); // Выходим из режима редактирования
+            onUpdate({ ...task, text: updatedText });
+            setIsEditing(false);
           }}
+          onCancel={() => setIsEditing(false)}
         />
       ) : (
         <DoneTask
           task={task}
-          onToggle={() => onUpdate({ ...task, isCompleted: !task.isCompleted })} // Переключаем завершенность
-          onEdit={() => setIsEditing(true)} // Включаем режим редактирования
-          onDelete={onDelete} // Удаляем задачу
+          onToggle={() => onUpdate({ ...task, isCompleted: !task.isCompleted })}
+          onEdit={() => setIsEditing(true)}
+          onDelete={onDelete}
         />
       )}
     </ToDoItemStyled>

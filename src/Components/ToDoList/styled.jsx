@@ -1,5 +1,4 @@
-
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ToDoListStyled = styled.div`
   display: flex;
@@ -14,4 +13,4 @@ export const DoWorkText = styled.h1`
   text-align: center;
   width: 100%;
   color: white;
-`
+`;

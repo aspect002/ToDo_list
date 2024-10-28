@@ -1,10 +1,9 @@
-// styled.jsx
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ToDoItemStyled = styled.div`
   list-style-type: none;
   margin: 5px 0;
-  background-color: #8C54FF;
+  background-color: #8c54ff;
   border-radius: 4px;
   width: 400px;
   max-width: 100%;
@@ -21,37 +20,37 @@ export const ToDoItemStyled = styled.div`
 
 export const ButtonContainer = styled.div`
   display: flex;
-  gap: 8px; /* Отступ между кнопками */
+  gap: 8px;
 `;
 
 export const TaskText = styled.span`
-  flex-grow: 1; /* Позволяет тексту занимать доступное пространство */
+  flex-grow: 1;
 `;
 
 export const InputField = styled.input`
-  flex-grow: 1; /* Занимает всё доступное пространство */
-  padding: 10px; /* Отступ внутри поля */
-  margin-right: 8px; /* Отступ между полем и кнопкой */
-  border: 1px solid #ccc; /* Стилизация границы */
-  border-radius: 4px; /* Скругление углов */
-  font-size: 16px; /* Размер шрифта */
+  flex-grow: 1;
+  padding: 10px;
+  margin-right: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
 `;
 
 export const StyledButtonUpdate = styled.button`
-  padding: 10px 15px; /* Отступ внутри кнопки */
-  background-color: #0be712; /* Цвет фона кнопки */
-  color: white; /* Цвет текста */
-  border: none; /* Убираем границу */
-  border-radius: 4px; /* Скругление углов */
-  cursor: pointer; /* Указатель при наведении */
-  height: 100%; /* Занимает всю высоту родительского контейнера */
+  padding: 10px 15px;
+  background-color: #0be712;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 100%;
 
   &:hover {
-    background-color:  #06f050; /* Цвет фона при наведении */
+    background-color: #06f050;
   }
 `;
 export const EditContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 100%; /* Занимает всю ширину родительского элемента */
+  width: 100%;
 `;

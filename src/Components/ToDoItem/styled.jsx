@@ -1,10 +1,9 @@
-// styled.jsx
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ToDoItemStyled = styled.div`
   list-style-type: none;
   margin: 5px 0;
-  background-color: #8C54FF;
+  background-color: #8c54ff;
   border-radius: 4px;
   width: 400px;
   max-width: 100%;
@@ -19,8 +18,8 @@ export const ToDoItemStyled = styled.div`
 
 export const ButtonContainer = styled.div`
   display: flex;
-  gap: 8px; /* Отступ между кнопками */
+  gap: 8px;
 `;
 export const TaskText = styled.span`
-  flex-grow: 1; /* Позволяет тексту занимать доступное пространство */
+  flex-grow: 1;
 `;

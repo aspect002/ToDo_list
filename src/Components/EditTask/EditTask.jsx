@@ -1,17 +1,16 @@
-// EditTask.jsx
 import React, { useState } from "react";
-import { StyledButtonUpdate, InputField,EditContainer  } from "./styled"; // Импортируем стили
+import { StyledButtonUpdate, InputField, EditContainer } from "./styled";
 
 const EditTask = ({ task, onUpdate, onCancel }) => {
   const [newTask, setNewTask] = useState(task);
 
   const handleUpdateClick = () => {
-    onUpdate(newTask); // Обновляем задачу
-    onCancel(); // Убираем режим редактирования
+    onUpdate(newTask);
+    onCancel();
   };
 
   return (
-    <EditContainer >
+    <EditContainer>
       <InputField
         type="text"
         value={newTask}
@@ -21,7 +20,7 @@ const EditTask = ({ task, onUpdate, onCancel }) => {
       <StyledButtonUpdate onClick={handleUpdateClick}>
         Update
       </StyledButtonUpdate>
-    </EditContainer >
+    </EditContainer>
   );
 };
 

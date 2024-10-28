@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import IconButton from '@mui/material/IconButton';
-
+import IconButton from "@mui/material/IconButton";
 
 export const StyledButtonDelete = styled(IconButton)`
   margin-left: auto;

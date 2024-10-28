@@ -1,9 +1,20 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { AddTaskContainer, InputAddTaskWrapper, InputAddTask, ButtonAddTask, ErrorMessage } from "./styled";
+import {
+  AddTaskContainer,
+  InputAddTaskWrapper,
+  InputAddTask,
+  ButtonAddTask,
+  ErrorMessage,
+} from "./styled";
 
 const AddTask = ({ onAdd }) => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
   const onSubmit = (data) => {
     if (data.task.trim()) {
@@ -20,7 +31,8 @@ const AddTask = ({ onAdd }) => {
           {...register("task", {
             required: "Error, input field is empty, enter a task",
             validate: (value) =>
-              value.trim() !== "" || "Error, input field is empty, enter a task",
+              value.trim() !== "" ||
+              "Error, input field is empty, enter a task",
           })}
         />
         <ButtonAddTask type="submit">Add task</ButtonAddTask>
