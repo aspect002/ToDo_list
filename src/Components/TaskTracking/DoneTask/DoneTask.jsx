@@ -1,6 +1,6 @@
 import React from "react";
 import { TaskText, CompletedTaskText, ButtonContainer, TaskContainer } from "./styled"; // Импортируйте новый компонент
-import ButtonEdit from "../../../Utils/ButtonEdit/ButtonEdit";
+import ButtonEdit from "../../../Utils/TaskTrackingUtils/ButtonEdit/ButtonEdit";
 import DeleteTask from "../DeleteTask/DeleteTask";
 
 const DoneTask = ({ task, onToggle, onEdit, onDelete }) => {

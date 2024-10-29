@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonDelete from "../../../Utils/ButtonDelete/ButtonDelete";
+import ButtonDelete from "../../../Utils/TaskTrackingUtils/ButtonDelete/ButtonDelete";
 
 const DeleteTask = ({ onDelete }) => {
   return <ButtonDelete onClick={onDelete} />;

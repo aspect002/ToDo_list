@@ -2,8 +2,8 @@ import React from "react";
 import ToDoItem from "../ToDoItem/ToDoItem";
 import AddTask from "../AddTask/AddTask";
 import { ToDoListStyled, DoWorkText } from "./styled";
-import UseTaskManager from "../../../Hooks/UseTaskManager/UseTaskManager";
-import withLogger from "../../HOCs/withLogger";
+import UseTaskManager from "../../../Hooks/TaskTrackingHooks/UseTaskManager/UseTaskManager";
+import withLogger from "../../HOCs/loggingTaskTracking/withLogger";
 
 const ToDolist = () => {
   const { tasks, handleAddTask, handleDeleteTask, handleUpdateTask } =
