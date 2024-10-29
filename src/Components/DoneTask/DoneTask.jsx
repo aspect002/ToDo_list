@@ -5,7 +5,7 @@ import DeleteTask from "../DeleteTask/DeleteTask";
 
 const DoneTask = ({ task, onToggle, onEdit, onDelete }) => {
   return (
-    <TaskContainer onClick={onToggle}> {/* Замените div на TaskContainer */}
+    <TaskContainer onClick={onToggle}> 
       {task.isCompleted ? (
         <CompletedTaskText>{task.text}</CompletedTaskText>
       ) : (
