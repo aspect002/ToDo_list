@@ -1,5 +1,5 @@
 import React from "react";
-import { TaskText, CompletedTaskText, ButtonContainer, TaskContainer } from "./styled"; // Импортируйте новый компонент
+import { TaskText, CompletedTaskText, ButtonContainer, TaskContainer } from "./styled";
 import ButtonEdit from "../../../Utils/TaskTrackingUtils/ButtonEdit/ButtonEdit";
 import DeleteTask from "../DeleteTask/DeleteTask";
 
@@ -28,5 +28,4 @@ const DoneTask = ({ task, onToggle, onEdit, onDelete }) => {
     </TaskContainer>
   );
 };
-
 export default DoneTask;
