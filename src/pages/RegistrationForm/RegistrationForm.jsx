@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import validationSchema from "../../../Utils/RegistrationUtils/validationSchema/validationSchema";
-import { authApi } from '../../../api/auth'; // Импортируем наш API
+import validationSchema from '../../Utils/AuthorizationUtils/validationSchema';
+import { authApi } from '../../api/auth'; 
 import {
   ContainerRegisterForm,
   FieldContainer,
@@ -14,7 +14,7 @@ import {
   ButtonRegistration,
   ContainerLoginButton
 } from "./styled";
-import LoginInButton from '../LogInButton/LogInButton';
+import LoginInButton from '../../Components/Registration/LogInButton/LogInButton';
 
 const RegistrationForm = () => {
   const [serverError, setServerError] = useState('');

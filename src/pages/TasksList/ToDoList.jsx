@@ -1,10 +1,10 @@
 import React from "react";
-import ToDoItem from "../ToDoItem/ToDoItem";
-import AddTask from "../AddTask/AddTask";
+import ToDoItem from "../../Components/TaskTracking/ToDoItem/ToDoItem";
+import AddTask from "../../Components/TaskTracking/AddTask/AddTask";
 import { ToDoListStyled, DoWorkText,ContainerLogOutButton} from "./styled";
-import UseTaskManager from "../../../Hooks/TaskTrackingHooks/UseTaskManager/UseTaskManager";
-import withLogger from "../../../HOCs/loggingTaskTracking/withLogger";
-import LogOutButton from "../LogOutButton/LogOutButton";
+import UseTaskManager from "../../Hooks/TaskTrackingHooks/UseTaskManager/UseTaskManager";
+import withLogger from "../../HOCs/loggingTaskTracking/withLogger";
+import LogOutButton from "../../Components/TaskTracking/LogOutButton/LogOutButton";
 
 const ToDolist = () => {
   const { tasks, handleAddTask, handleDeleteTask, handleUpdateTask } =

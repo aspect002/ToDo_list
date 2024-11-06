@@ -3,7 +3,8 @@ import { useForm } from "react-hook-form";
 import { ContainerAuthorizationForm, FieldContainer, Label, InputField,MessegeValidation,LogInButton,ContainerSignUpButton} from "./styled";
 import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "../../Utils/AuthorizationUtils/validationSchema"
-import SignUpButton from "./SignUpButton/SignUpButton";
+import SignUpButton from "../../Components/Authorization/SignUpButton/SignUpButton";
+
 const AuthorizationForm = () => {
     const [serverError, setServerError] = useState('')
     const { register, handleSubmit, formState: { errors } } = useForm({resolver: yupResolver(validationSchema)});

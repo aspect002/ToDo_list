@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Routes,} from 'react-router-dom';
-import ToDoList from '../Components/TaskTracking/ToDoList/ToDoList';
-import RegistrationForm from '../Components/Registration/RegistrationForm/RegistrationForm';
-import AuthorizationForm from '../Components/Authorization/authorizationForm';
+import ToDoList from '../pages/TasksList/ToDoList';
+import RegistrationForm from '../pages/RegistrationForm/RegistrationForm';
+import AuthorizationForm from '../pages/AuthorizationForm/AuthorizationForm';
 
 
 const ToDoRoutes = () => {
