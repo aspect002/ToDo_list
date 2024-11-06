@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import validationSchema from '../../Utils/AuthorizationUtils/validationSchema';
-import { authApi } from '../../api/auth'; 
+import validationSchema from '../../Utils/RegistrationUtils/validationSchema/validationSchema'
+import { authApi } from '../../api/auth';
 import {
   ContainerRegisterForm,
   FieldContainer,
@@ -71,6 +71,7 @@ const RegistrationForm = () => {
         {renderError("password")}
 
         {/* Gender */}
+
         <FieldContainer>
           <NameField>gender</NameField>
           <>
