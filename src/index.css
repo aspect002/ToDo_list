@@ -1,9 +1,11 @@
 body {
   margin: 0;
   display: flex;
-  justify-content: center; /* Центрирование по горизонтали */
-  place-items: center;
+  flex-direction: column; /* Добавлено для вертикальной ориентации */
+  justify-content: center; /* Центрирование по вертикали */
+  align-items: center; /* Центрирование по горизонтали */
   min-width: 320px;
   min-height: 100vh;
-  background-color: #8C54FF
+  background-color: #8C54FF;
+
 }

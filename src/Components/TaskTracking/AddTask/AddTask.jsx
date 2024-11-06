@@ -9,12 +9,7 @@ import {
 } from "./styled";
 
 const AddTask = ({ onAdd }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
+  const {register,handleSubmit,formState: { errors },reset,} = useForm();
 
   const onSubmit = (data) => {
     if (data.task.trim()) {

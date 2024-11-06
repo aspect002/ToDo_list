@@ -1,0 +1,119 @@
+import React, { useState } from 'react';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import validationSchema from "../../../Utils/RegistrationUtils/validationSchema/validationSchema";
+import { authApi } from '../../../api/auth'; // Импортируем наш API
+import {
+  ContainerRegisterForm,
+  FieldContainer,
+  NameField,
+  InputField,
+  MessegeValidation,
+  ButtonGender,
+  HiddenRadioGender,
+  ButtonRegistration,
+  ContainerLoginButton
+} from "./styled";
+import LoginInButton from '../LogInButton/LogInButton';
+
+const RegistrationForm = () => {
+  const [serverError, setServerError] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await authApi.register(data);
+      console.log('User registered successfully:', response);
+      // Здесь можно добавить логику для обработки успешной регистрации, например, редирект на другую страницу или уведомление пользователя
+    } catch (error) {
+      console.error('Error registering user:', error);
+      setServerError(error.message || 'An unexpected error occurred. Please try again.');
+    }
+  };
+
+  const renderError = (fieldName) => {
+    return errors[fieldName] ? (
+      <MessegeValidation>{errors[fieldName].message}</MessegeValidation>
+    ) : null;
+  };
+
+  return (
+    <>
+      <ContainerRegisterForm onSubmit={handleSubmit(onSubmit)}>
+        {/* Username */}
+        <FieldContainer>
+          <NameField>user name</NameField>
+          <InputField {...register("username")} placeholder="Stas23" />
+        </FieldContainer>
+        {renderError("username")}
+
+        {/* Email */}
+        <FieldContainer>
+          <NameField>email</NameField>
+          <InputField
+            {...register("email")}
+            placeholder="send.offer.here@gmail.com"
+          />
+        </FieldContainer>
+        {renderError("email")}
+
+        {/* Password */}
+        <FieldContainer>
+          <NameField>password</NameField>
+          <InputField {...register("password")} placeholder="1Sq_22qw" type="password" />
+        </FieldContainer>
+        {renderError("password")}
+
+        {/* Gender */}
+        <FieldContainer>
+          <NameField>gender</NameField>
+          <>
+            <HiddenRadioGender value="male" {...register("gender")} id="male" />
+            <ButtonGender
+              className={errors.gender ? "error" : ""}
+              onClick={() => document.getElementById("male").click()}
+            >
+              Male
+            </ButtonGender>
+
+            <HiddenRadioGender
+              value="female"
+              {...register("gender")}
+              id="female"
+            />
+            <ButtonGender
+              className={errors.gender ? "error" : ""}
+              onClick={() => document.getElementById("female").click()}
+            >
+              Female
+            </ButtonGender>
+          </>
+        </FieldContainer>
+        {renderError("gender")}
+
+        {/* Age */}
+        <FieldContainer>
+          <NameField>age</NameField>
+          <InputField {...register("age")} placeholder="27" type="number" />
+        </FieldContainer>
+        {renderError("age")}
+
+        {serverError && <MessegeValidation>{serverError}</MessegeValidation>}
+
+        <ButtonRegistration type="submit">Register</ButtonRegistration>
+      </ContainerRegisterForm>
+
+      <ContainerLoginButton>
+        <LoginInButton />
+      </ContainerLoginButton>
+    </>
+  );
+};
+
+export default RegistrationForm;
