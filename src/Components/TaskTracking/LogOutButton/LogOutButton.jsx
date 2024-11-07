@@ -1,12 +1,16 @@
+// src/Components/TaskTracking/LogOutButton/LogOutButton.jsx
 import React from "react";
-import { LogOutContainer,LogOutLink } from "./styled";
+import { useNavigate } from "react-router-dom";
+import { LogOutContainer, LogOutLink } from "./styled";
 
 const LogOutButton = () => {
+    const navigate = useNavigate();
+
     return (
       <LogOutContainer>
-        <LogOutLink>Log out</LogOutLink>
+        <LogOutLink onClick={() => navigate('/authorization')}>Log out</LogOutLink>
       </LogOutContainer>
     );
-  };
+};
 
-  export default LogOutButton;
+export default LogOutButton;

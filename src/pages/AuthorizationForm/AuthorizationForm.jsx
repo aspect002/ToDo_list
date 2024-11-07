@@ -4,12 +4,16 @@ import { ContainerAuthorizationForm, FieldContainer, Label, InputField,MessegeVa
 import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "../../Utils/AuthorizationUtils/validationSchema"
 import SignUpButton from "../../Components/Authorization/SignUpButton/SignUpButton";
+import { useNavigate } from 'react-router-dom';
 
 const AuthorizationForm = () => {
+    const navigate = useNavigate();
     const [serverError, setServerError] = useState('')
     const { register, handleSubmit, formState: { errors } } = useForm({resolver: yupResolver(validationSchema)});
+
     const onSubmit = (data) => {
         console.log(data);
+        navigate('/tasks')
     };
 
     return (

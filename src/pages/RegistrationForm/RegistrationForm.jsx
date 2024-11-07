@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
+import { useNavigate } from 'react-router-dom';
 import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from '../../Utils/RegistrationUtils/validationSchema/validationSchema'
 import { authApi } from '../../api/auth';
@@ -18,6 +19,7 @@ import LoginInButton from '../../Components/Registration/LogInButton/LogInButton
 
 const RegistrationForm = () => {
   const [serverError, setServerError] = useState('');
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -30,6 +32,7 @@ const RegistrationForm = () => {
     try {
       const response = await authApi.register(data);
       console.log('User registered successfully:', response);
+      navigate('/authorization');
       // Здесь можно добавить логику для обработки успешной регистрации, например, редирект на другую страницу или уведомление пользователя
     } catch (error) {
       console.error('Error registering user:', error);
