@@ -5,17 +5,25 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "../../Utils/AuthorizationUtils/validationSchema"
 import SignUpButton from "../../Components/Authorization/SignUpButton/SignUpButton";
 import { useNavigate } from 'react-router-dom';
+import {authorizationUserApi} from '../../api/auth.api';
+import { tokenService } from '../../services/tokenService';
 
 const AuthorizationForm = () => {
     const navigate = useNavigate();
     const [serverError, setServerError] = useState('')
     const { register, handleSubmit, formState: { errors } } = useForm({resolver: yupResolver(validationSchema)});
 
-    const onSubmit = (data) => {
-        console.log(data);
-        navigate('/tasks')
-    };
-
+  const onSubmit = async (data) => {
+    try {
+      const response = await authorizationUserApi.login(data);
+      tokenService.setToken(response.token);
+      console.log('Token: ', response.token);
+      navigate('/tasks');
+    } catch (error) {
+      setServerError('Такого пользователя нет!');
+      console.error(error);
+    }
+  };
     return (
         <>
         <ContainerAuthorizationForm onSubmit={handleSubmit(onSubmit)}>
@@ -37,6 +45,7 @@ const AuthorizationForm = () => {
                     placeholder="1Sq_22qw"
                 />
                 {errors.password && <MessegeValidation>{errors.password.message}</MessegeValidation>}
+                {serverError &&<MessegeValidation>{serverError}</MessegeValidation>}
             </FieldContainer>
 
             <LogInButton type="submit">Log In</LogInButton>

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from '../../Utils/RegistrationUtils/validationSchema/validationSchema'
-import { authApi } from '../../api/auth';
+import { registrationUserApi } from '../../api/auth.api';
 import {
   ContainerRegisterForm,
   FieldContainer,
@@ -30,15 +30,14 @@ const RegistrationForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await authApi.register(data);
-      console.log('User registered successfully:', response);
+      const response = await registrationUserApi.register(data);
+      console.log('Зарегистрированный пользователь:', response.data);
       navigate('/authorization');
-      // Здесь можно добавить логику для обработки успешной регистрации, например, редирект на другую страницу или уведомление пользователя
     } catch (error) {
-      console.error('Error registering user:', error);
-      setServerError(error.message || 'An unexpected error occurred. Please try again.');
+      setServerError('Ошибка при регистрации, введенныe username и email уже используются');
+      console.error(error)
     }
-  };
+  }
 
   const renderError = (fieldName) => {
     return errors[fieldName] ? (
@@ -109,6 +108,7 @@ const RegistrationForm = () => {
         {renderError("age")}
 
         {serverError && <MessegeValidation>{serverError}</MessegeValidation>}
+
 
         <ButtonRegistration type="submit">Register</ButtonRegistration>
       </ContainerRegisterForm>

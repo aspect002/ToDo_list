@@ -23,6 +23,7 @@ const UseTaskManager = () => {
 
   return {
     tasks,
+    setTasks,
     handleAddTask,
     handleDeleteTask,
     handleUpdateTask,
