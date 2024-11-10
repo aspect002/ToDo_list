@@ -23,7 +23,7 @@ export const registrationUserApi = {
 
   },
 };
-
+;;;;
 //--------авторизация------------//
 export const authorizationUserApi = {
   login: async (userData) => {

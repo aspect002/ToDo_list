@@ -3,13 +3,13 @@ import ButtonDelete from "../../../Utils/TaskTrackingUtils/ButtonDelete/ButtonDe
 import { deleteTodo } from '../../../api/tasks.api'; // Импортируйте функцию
 import { tokenService } from '../../../services/tokenService';
 
-const DeleteTask = ({ taskId, fetchTasks }) => {
+const DeleteTask = ({ taskId, onDelete }) => {
   const handleDelete = async () => {
     const token = tokenService.getToken(); // Получите токен
     try {
       const deletedTask = await deleteTodo(taskId, token); // Удалите задачу
       console.log(`Задача удалена:`, deletedTask); // Логируем удаленную задачу
-      fetchTasks(); // Обновите состояние в родительском компоненте
+      onDelete(taskId); // Передаем taskId для удаления из списка
     } catch (error) {
       console.error("Ошибка при удалении задачи:", error);
     }

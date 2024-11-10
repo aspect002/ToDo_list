@@ -5,6 +5,7 @@ const UseTaskManager = (setFetchedTasks) => {
   };
 
   const handleDeleteTask = (id) => {
+    // Удаляем задачу из состояния без повторного запроса к API
     setFetchedTasks((prevTasks) => prevTasks.filter(task => task.id !== id));
   };
 
@@ -13,11 +14,11 @@ const UseTaskManager = (setFetchedTasks) => {
       prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
     );
   };
+
   return {
     handleAddTask,
     handleDeleteTask,
     handleUpdateTask,
   };
-};
-
-export default UseTaskManager;
+}
+export default UseTaskManager

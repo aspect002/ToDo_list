@@ -3,7 +3,7 @@ import { TaskText, CompletedTaskText, ButtonContainer, TaskContainer } from "./s
 import ButtonEdit from "../../../Utils/TaskTrackingUtils/ButtonEdit/ButtonEdit";
 import DeleteTask from "../DeleteTask/DeleteTask"; // Импортируйте компонент удаления
 
-const DoneTask = ({ task, onToggle, onEdit, fetchTasks }) => {
+const DoneTask = ({ task, onToggle, onEdit, onDelete }) => {
   return (
     <TaskContainer onClick={onToggle}>
       {task.isCompleted ? (
@@ -18,7 +18,7 @@ const DoneTask = ({ task, onToggle, onEdit, fetchTasks }) => {
             onEdit();
           }}
         />
-        <DeleteTask taskId={task.id} fetchTasks={fetchTasks} /> {/* Передаем taskId и fetchTasks */}
+        <DeleteTask taskId={task.id} onDelete={onDelete} /> {/* Передаем onDelete */}
       </ButtonContainer>
     </TaskContainer>
   );

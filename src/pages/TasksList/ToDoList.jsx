@@ -10,33 +10,28 @@ import { getAllTasks } from '../../api/tasks.api';
 
 const ToDolist = () => {
   const [fetchedTasks, setFetchedTasks] = useState([]);
-  const [taskChanged, setTaskChanged] = useState(false);
+
   const fetchTasks = async () => {
     try {
       const data = await getAllTasks();
       console.log("getAllTasks список задач пользователя", data);
       setFetchedTasks(data || []);
     } catch (error) {
-      console.error( error.response.data.message);
+      console.error(error.response.data.message);
     }
   };
 
-  const { handleAddTask, handleDeleteTask, handleUpdateTask } = UseTaskManager(setFetchedTasks);
+  const { handleDeleteTask, handleUpdateTask } = UseTaskManager(setFetchedTasks);
 
   useEffect(() => {
-    fetchTasks();
-  }, [taskChanged]);
-
-  const handleAddTaskWithFetch = (newTask) => {
-    handleAddTask(newTask);
-    setTaskChanged(prev => !prev); 
-  };
+    fetchTasks(); // Этот запрос выполнится только один раз при монтировании компонента
+  }, []); // Пустой массив зависимостей
 
   return (
     <>
       <ToDoListStyled>
         <DoWorkText>Get things done!</DoWorkText>
-        <AddTask onAdd={handleAddTaskWithFetch} />{/* Передаем fetchTasks */}
+        <AddTask onAdd={(newTask) => setFetchedTasks(prev => [...prev, newTask])} />
         {fetchedTasks.map((task) => (
           <ToDoItem
             key={task.id}
@@ -53,5 +48,5 @@ const ToDolist = () => {
     </>
   );
 };
-
+;;;;;
 export default withLogger(ToDolist);

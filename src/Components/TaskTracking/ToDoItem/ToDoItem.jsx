@@ -3,7 +3,7 @@ import { ToDoItemStyled } from "./styled";
 import DoneTask from "../DoneTask/DoneTask";
 import EditTask from "../EditTask/EditTask";
 
-const ToDoItem = ({ task, onDelete, onUpdate, fetchTasks }) => {
+const ToDoItem = ({ task, onUpdate, onDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
@@ -22,7 +22,7 @@ const ToDoItem = ({ task, onDelete, onUpdate, fetchTasks }) => {
           task={task}
           onToggle={() => onUpdate({ ...task, isCompleted: !task.isCompleted })}
           onEdit={() => setIsEditing(true)}
-          fetchTasks={fetchTasks} // Передаем fetchTasks для обновления списка задач
+          onDelete={onDelete} // Передаем onDelete для удаления задачи
         />
       )}
     </ToDoItemStyled>
