@@ -1,11 +1,9 @@
 import React from "react";
 import { TaskText, CompletedTaskText, ButtonContainer, TaskContainer } from "./styled";
 import ButtonEdit from "../../../Utils/TaskTrackingUtils/ButtonEdit/ButtonEdit";
-import DeleteTask from "../DeleteTask/DeleteTask";
-import ButtonDelete from "../../../Utils/TaskTrackingUtils/ButtonDelete/ButtonDelete"; // Импортируйте компонент удаления
-import { toggleTodoCompletion } from '../../../api/tasks.api'; // Импортируйте функцию
-import { tokenService } from '../../../services/tokenService';
-const DoneTask = ({ task, onToggle, onEdit, onDelete }) => {
+import DeleteTask from "../DeleteTask/DeleteTask"; // Импортируйте компонент удаления
+
+const DoneTask = ({ task, onToggle, onEdit, fetchTasks }) => {
   return (
     <TaskContainer onClick={onToggle}>
       {task.isCompleted ? (
@@ -20,9 +18,10 @@ const DoneTask = ({ task, onToggle, onEdit, onDelete }) => {
             onEdit();
           }}
         />
-        <ButtonDelete taskId={task.id} onDelete={onDelete} />
+        <DeleteTask taskId={task.id} fetchTasks={fetchTasks} /> {/* Передаем taskId и fetchTasks */}
       </ButtonContainer>
     </TaskContainer>
   );
 };
+
 export default DoneTask;
