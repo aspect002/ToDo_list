@@ -6,39 +6,37 @@ import UseTaskManager from "../../Hooks/TaskTrackingHooks/UseTaskManager/UseTask
 import withLogger from "../../HOCs/loggingTaskTracking/withLogger";
 import LogOutButton from "../../Components/TaskTracking/LogOutButton/LogOutButton";
 import { getAllTasks } from '../../api/tasks.api';
-
-
+;;
 const ToDolist = () => {
   const [fetchedTasks, setFetchedTasks] = useState([]);
 
   const fetchTasks = async () => {
     try {
       const data = await getAllTasks();
-      console.log("getAllTasks список задач пользователя", data);
       setFetchedTasks(data || []);
     } catch (error) {
       console.error(error.response.data.message);
     }
   };
 
-  const { handleDeleteTask, handleUpdateTask } = UseTaskManager(setFetchedTasks);
+  const { handleDeleteTask, handleUpdateTask, handleAddTask } = UseTaskManager(setFetchedTasks);
 
   useEffect(() => {
+    console.log('Компонент монтируется, вызываем getAllTasks');
     fetchTasks(); // Этот запрос выполнится только один раз при монтировании компонента
-  }, []); // Пустой массив зависимостей
+  }, []);
 
   return (
     <>
       <ToDoListStyled>
         <DoWorkText>Get things done!</DoWorkText>
-        <AddTask onAdd={(newTask) => setFetchedTasks(prev => [...prev, newTask])} />
+        <AddTask onAdd={handleAddTask} />
         {fetchedTasks.map((task) => (
           <ToDoItem
             key={task.id}
             task={task}
             onDelete={handleDeleteTask}
             onUpdate={handleUpdateTask}
-            fetchTasks={fetchTasks}
           />
         ))}
       </ToDoListStyled>
@@ -48,5 +46,4 @@ const ToDolist = () => {
     </>
   );
 };
-;;;;;
 export default withLogger(ToDolist);
