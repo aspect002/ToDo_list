@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ToDoItemStyled } from "./styled";
 import DoneTask from "../DoneTask/DoneTask";
 import EditTask from "../EditTask/EditTask";
-
+import ButtonDelete from "../../../Utils/TaskTrackingUtils/ButtonDelete/ButtonDelete";
 const ToDoItem = ({ task, onDelete, onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -10,9 +10,9 @@ const ToDoItem = ({ task, onDelete, onUpdate }) => {
     <ToDoItemStyled>
       {isEditing ? (
         <EditTask
-          task={task.text}
-          onUpdate={(updatedText) => {
-            onUpdate({ ...task, text: updatedText });
+          task={task}
+          onUpdate={(updatedTask) => {
+            onUpdate(updatedTask);
             setIsEditing(false);
           }}
           onCancel={() => setIsEditing(false)}
@@ -25,6 +25,7 @@ const ToDoItem = ({ task, onDelete, onUpdate }) => {
           onDelete={onDelete}
         />
       )}
+
     </ToDoItemStyled>
   );
 };

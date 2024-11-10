@@ -1,29 +1,21 @@
 import { useState } from "react";
 
-const UseTaskManager = () => {
-  const [tasks, setTasks] = useState([]);
-
-  const handleAddTask = (task) => {
-    console.log("Adding task:", task);
-    const newTask = { id: Date.now(), text: task, isCompleted: false };
-    setTasks([...tasks, newTask]);
+const UseTaskManager = (setFetchedTasks) => {
+  const handleAddTask = (newTask) => {
+    console.log("Adding task:", newTask);
+    setFetchedTasks((prevTasks) => [...prevTasks, newTask]); // Добавьте новую задачу в fetchedTasks
   };
 
-  const handleDeleteTask = (index) => {
-    console.log("Deleting task at index:", index);
-    const newTasks = tasks.filter((_, i) => i !== index);
-    setTasks(newTasks);
+  const handleDeleteTask = (id) => {
+    setFetchedTasks((prevTasks) => prevTasks.filter(task => task.id !== id));
   };
 
-  const handleUpdateTask = (index, updatedTask) => {
-    console.log("Updating task at index:", index, "to:", updatedTask);
-    const newTasks = tasks.map((task, i) => (i === index ? updatedTask : task));
-    setTasks(newTasks);
+  const handleUpdateTask = (updatedTask) => {
+    setFetchedTasks((prevTasks) =>
+      prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+    );
   };
-
   return {
-    tasks,
-    setTasks,
     handleAddTask,
     handleDeleteTask,
     handleUpdateTask,

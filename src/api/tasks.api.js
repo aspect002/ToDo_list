@@ -5,7 +5,7 @@ const API_BASE_URL = 'https://todo-redev.herokuapp.com/api';
 const apiTasks = axios.create({
   baseURL: API_BASE_URL,
   headers: {
-    'Accept': 'application/json',
+    'accept': 'application/json',
     'Content-Type': 'application/json',
   },
 });
@@ -14,10 +14,6 @@ const apiTasks = axios.create({
 export const getAllTasks = async (isCompleted) => {
   try {
     const token = tokenService.getToken();
-    if (!token) {
-      throw new Error("Токен отсутствует. Необходимо выполнить вход.");
-    }
-
     const params = {};
     if (isCompleted !== undefined) {
       params.isCompleted = isCompleted; // Добавляем фильтр, если он передан
@@ -31,8 +27,7 @@ export const getAllTasks = async (isCompleted) => {
     });
     return response.data; // Возвращаем массив задач
   } catch (error) {
-    console.error('Ошибка получения задач:', error);
-    throw error; // Пробрасываем ошибку для дальнейшей обработки
+    console.error("Для работы нужен токен!", error);
   }
 };
 
@@ -45,6 +40,44 @@ export const createTodo = async (taskData, token) => {
     return response.data; // Возвращаем данные о созданной задаче
   } catch (error) {
     console.error('Ошибка создания задачи:', error);
+    throw error; // Пробрасываем ошибку для дальнейшей обработки
+  }
+};
+// Обновление названия задачи
+export const updateTodo = async (id, taskData, token) => {
+  try {
+    const response = await apiTasks.patch(`/todos/${id}`, taskData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data; // Возвращаем обновленные данные задачи
+  } catch (error) {
+    console.error('Ошибка обновления задачи:', error);
+    throw error; // Пробрасываем ошибку для дальнейшей обработки
+  }
+};
+
+
+// Функция для удаления задачи по ID
+export const deleteTodo = async (id, token) => {
+  try {
+    const response = await apiTasks.delete(`/todos/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// Функция для обновления свойства isCompleted задачи по ID
+export const toggleTodoCompletion = async (id, token) => {
+  try {
+    const response = await apiTasks.patch(`/todos/${id}/isCompleted`, {}, { // Измените null на пустой объект
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data; // Возвращаем обновленные данные задачи
+  } catch (error) {
+    console.error('Ошибка обновления состояния задачи:', error);
     throw error; // Пробрасываем ошибку для дальнейшей обработки
   }
 };

@@ -5,6 +5,7 @@ export const TaskText = styled.span``;
 export const CompletedTaskText = styled.span`
   text-decoration: line-through;
   color: #120f0f;
+
 `;
 
 export const ButtonContainer = styled.div`
@@ -12,6 +13,7 @@ export const ButtonContainer = styled.div`
   gap: 10px;
   margin-left: auto;
   align-items: center;
+
 `;
 
 export const TaskContainer = styled.div`
@@ -19,4 +21,5 @@ export const TaskContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
 `;
