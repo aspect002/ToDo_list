@@ -5,37 +5,38 @@ import { ToDoListStyled, DoWorkText, ContainerLogOutButton } from "./styled";
 import UseTaskManager from "../../Hooks/TaskTrackingHooks/UseTaskManager/UseTaskManager";
 import withLogger from "../../HOCs/loggingTaskTracking/withLogger";
 import LogOutButton from "../../Components/TaskTracking/LogOutButton/LogOutButton";
-import { getAllTasks } from '../../api/tasks.api'; // Импортируйте функцию
-import DeleteTask from "../../Components/TaskTracking/DeleteTask/DeleteTask";
+import { getAllTasks } from '../../api/tasks.api';
 
 
 const ToDolist = () => {
   const [fetchedTasks, setFetchedTasks] = useState([]);
-
-  // Определите функцию fetchTasks
+  const [taskChanged, setTaskChanged] = useState(false);
   const fetchTasks = async () => {
     try {
       const data = await getAllTasks();
       console.log("getAllTasks список задач пользователя", data);
       setFetchedTasks(data || []);
     } catch (error) {
-      console.error("Ошибка при получении задач:", error);
+      console.error( error.response.data.message);
     }
   };
 
   const { handleAddTask, handleDeleteTask, handleUpdateTask } = UseTaskManager(setFetchedTasks);
 
   useEffect(() => {
-    fetchTasks(); // Вызовите функцию при монтировании
-  }, []);
+    fetchTasks();
+  }, [taskChanged]);
 
-
+  const handleAddTaskWithFetch = (newTask) => {
+    handleAddTask(newTask);
+    setTaskChanged(prev => !prev); 
+  };
 
   return (
     <>
       <ToDoListStyled>
         <DoWorkText>Get things done!</DoWorkText>
-        <AddTask onAdd={handleAddTask} fetchTasks={fetchTasks} /> {/* Передаем fetchTasks */}
+        <AddTask onAdd={handleAddTaskWithFetch} />{/* Передаем fetchTasks */}
         {fetchedTasks.map((task) => (
           <ToDoItem
             key={task.id}

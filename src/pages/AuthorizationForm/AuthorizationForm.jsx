@@ -21,7 +21,7 @@ const AuthorizationForm = () => {
       navigate('/tasks');
     } catch (error) {
       setServerError('Такого пользователя нет!');
-      console.error(error);
+      console.error(error.message);
     }
   };
     return (

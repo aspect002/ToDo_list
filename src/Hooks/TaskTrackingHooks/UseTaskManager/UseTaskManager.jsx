@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const UseTaskManager = (setFetchedTasks) => {
   const handleAddTask = (newTask) => {
     console.log("Adding task:", newTask);

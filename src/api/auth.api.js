@@ -14,8 +14,13 @@ const apiUser = axios.create({
 //-------------------регистрация---------------//
 export const registrationUserApi = {
   register: async (userData) => {
-    const response = await apiUser.post('/users/register', userData);
+    try{
+        const response = await apiUser.post('/users/register', userData);
     return response;
+    } catch(error){
+      throw error;
+    }
+
   },
 };
 
@@ -26,7 +31,6 @@ export const authorizationUserApi = {
       const response = await apiUser.post('/auth/login', userData);
       return response.data;
     } catch (error) {
-      console.error('Ошибка авторизации:', error);
       throw error;
     }
   },

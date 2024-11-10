@@ -16,18 +16,18 @@ export const getAllTasks = async (isCompleted) => {
     const token = tokenService.getToken();
     const params = {};
     if (isCompleted !== undefined) {
-      params.isCompleted = isCompleted; // Добавляем фильтр, если он передан
+      params.isCompleted = isCompleted;
     }
     const response = await apiTasks.get('/todos', {
       headers: {
         'accept': 'application/json',
-        'Authorization': `Bearer ${token}` // Убедитесь, что токен установлен
+        'Authorization': `Bearer ${token}`
       },
       params,
     });
-    return response.data; // Возвращаем массив задач
+    return response.data;
   } catch (error) {
-    console.error("Для работы нужен токен!", error);
+    throw error;
   }
 };
 
@@ -37,10 +37,10 @@ export const createTodo = async (taskData, token) => {
     const response = await apiTasks.post('/todos', taskData, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return response.data; // Возвращаем данные о созданной задаче
+    return response.data;
   } catch (error) {
-    console.error('Ошибка создания задачи:', error);
-    throw error; // Пробрасываем ошибку для дальнейшей обработки
+    console.error(error);
+    throw error;
   }
 };
 // Обновление названия задачи
@@ -49,10 +49,10 @@ export const updateTodo = async (id, taskData, token) => {
     const response = await apiTasks.patch(`/todos/${id}`, taskData, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return response.data; // Возвращаем обновленные данные задачи
+    return response.data;
   } catch (error) {
-    console.error('Ошибка обновления задачи:', error);
-    throw error; // Пробрасываем ошибку для дальнейшей обработки
+    console.error(error);
+    throw error; 
   }
 };
 

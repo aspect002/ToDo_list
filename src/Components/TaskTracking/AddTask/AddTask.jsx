@@ -12,20 +12,23 @@ import {
 
 
 
-const AddTask = ({ onAdd,fetchTasks }) => {
+const AddTask = ({ onAdd }) => {
   const {register,handleSubmit,formState: { errors },reset,} = useForm();
 
   const onSubmit = async (data) => {
     if (data.task.trim()) {
-      const token = tokenService.getToken(); // Получите токен
+      const token = tokenService.getToken();
       try {
-        const newTask = await createTodo({ title: data.task }, token); // Создайте задачу
+        const newTask = await createTodo({ title: data.task }, token);
         console.log('createTodo Созданная задача:', newTask)
         onAdd(newTask);
-        fetchTasks(); // Вызовите onAdd с новой задачей
         reset();
       } catch (error) {
-        console.error('Ошибка при создании задачи:', error);
+        if (error.response) {
+          console.error(error.response.data.message);
+        } else {
+          console.error(error.message);
+        }
       }
     }
   };

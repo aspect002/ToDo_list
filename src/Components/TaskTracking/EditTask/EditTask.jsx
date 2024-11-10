@@ -9,37 +9,35 @@ import {
   EditContainer,
 } from "./styled";
 
-const EditTask = ({ task, onUpdate, onCancel }) => {
-  // Проверка на наличие task
-  if (!task) {
-    return <div>Задача не найдена.</div>; // Или любое другое сообщение об ошибке
-  }
 
-  const [newTask, setNewTask] = useState(task.title); // Используйте task.title
+const EditTask = ({ task, onUpdate, onCancel }) => {
+  const [newTask, setNewTask] = useState(task.title);
   const [error, setError] = useState("");
 
   const handleUpdateClick = async () => {
     if (!newTask.trim()) {
-      setError("Мы не делаем пустые вещи! Заполните поле, ленивец!");
+      setError("do things, fill out the field!");
       return;
     }
     setError("");
 
-    const token = tokenService.getToken(); // Получите токен
+    // Проверяем, изменилось ли название задачи
+    if (newTask.trim() === task.title) {
+      console.log(`Название задачи не изменилось, обновление не требуется.`);
+      onCancel(); // Закрываем поле редактирования
+      return; // Выход из функции
+    }
+
+    const token = tokenService.getToken();
     try {
       console.log(`UpdateTodo Обновление задачи с ID: ${task.id} на новое название: "${newTask}"`);
-      const updatedTask = await updateTodo(task.id, { title: newTask }, token); // Обновите задачу
-      onUpdate(updatedTask); // Передайте обновленную задачу в родительский компонент
-      onCancel(); // Закройте режим редактирования
+      const updatedTask = await updateTodo(task.id, { title: newTask }, token);
+      onUpdate(updatedTask);
+      onCancel();
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        console.error('Ошибка: Для работы нужен токен!'); // Обработка 401 ошибки
-      } else {
-        console.error('Ошибка при обновлении задачи:', error);
-      }
+      setError(error.message);
     }
   };
-
   return (
     <EditContainer>
       <InputOutputContainer>
@@ -47,7 +45,7 @@ const EditTask = ({ task, onUpdate, onCancel }) => {
           type="text"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
-          placeholder="Редактировать задачу"
+          placeholder="edit task"
         />
         <StyledButtonUpdate onClick={handleUpdateClick}>
           UpDate

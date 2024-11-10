@@ -35,7 +35,7 @@ const RegistrationForm = () => {
       navigate('/authorization');
     } catch (error) {
       setServerError('Ошибка при регистрации, введенныe username и email уже используются');
-      console.error(error)
+      console.error(error.response.data.message )
     }
   }
 

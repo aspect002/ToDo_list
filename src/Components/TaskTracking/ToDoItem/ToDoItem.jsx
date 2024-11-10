@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ToDoItemStyled } from "./styled";
 import DoneTask from "../DoneTask/DoneTask";
 import EditTask from "../EditTask/EditTask";
-import ButtonDelete from "../../../Utils/TaskTrackingUtils/ButtonDelete/ButtonDelete";
+
 const ToDoItem = ({ task, onDelete, onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
 
