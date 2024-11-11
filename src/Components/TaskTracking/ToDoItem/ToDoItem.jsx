@@ -22,7 +22,7 @@ const ToDoItem = ({ task, onUpdate, onDelete }) => {
           task={task}
           onToggle={() => onUpdate({ ...task, isCompleted: !task.isCompleted })}
           onEdit={() => setIsEditing(true)}
-          onDelete={onDelete} // Передаем onDelete для удаления задачи
+          onDelete={onDelete} 
         />
       )}
     </ToDoItemStyled>

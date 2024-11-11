@@ -7,7 +7,6 @@ export const ToDoListStyled = styled.div`
   padding: 20px;
   background-color: #053865e8;
   border-radius: 10px;
-  border: 1px solid red;
   ;
 `;
 

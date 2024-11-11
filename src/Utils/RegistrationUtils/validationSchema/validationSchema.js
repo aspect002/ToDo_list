@@ -20,9 +20,9 @@ const validationSchema = yup.object().shape({
         .oneOf(['male', 'female'], 'Select a gender')
         .required('Gender required'),
 
-        age: yup.number()
-        .typeError('Age must be a number') // Проверка на тип
-        .required('Age required') // Проверка на заполнение
+    age: yup.number()
+        .typeError('Age must be a number')
+        .required('Age required')
         .positive('Age must be a positive number')
         .integer('Age must be an integer')
         .min(1, 'Age must be at least 1')

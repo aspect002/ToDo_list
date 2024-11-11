@@ -14,7 +14,6 @@ export const ToDoItemStyled = styled.div`
   color: white;
   justify-content: space-between;
   align-items: center;
-  
 `;
 
 export const ButtonContainer = styled.div`

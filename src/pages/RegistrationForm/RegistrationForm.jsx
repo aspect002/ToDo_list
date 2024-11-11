@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
-import validationSchema from '../../Utils/RegistrationUtils/validationSchema/validationSchema'
-import { registrationUserApi } from '../../api/auth.api';
+import validationSchema from "../../Utils/RegistrationUtils/validationSchema/validationSchema";
+import { registrationUserApi } from "../../api/auth.api";
 import {
   ContainerRegisterForm,
   FieldContainer,
@@ -13,12 +13,12 @@ import {
   ButtonGender,
   HiddenRadioGender,
   ButtonRegistration,
-  ContainerLoginButton
+  ContainerLoginButton,
 } from "./styled";
-import LoginInButton from '../../Components/Registration/LogInButton/LogInButton';
+import LoginInButton from "../../Components/Registration/LogInButton/LogInButton";
 
 const RegistrationForm = () => {
-  const [serverError, setServerError] = useState('');
+  const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
   const {
     register,
@@ -31,13 +31,15 @@ const RegistrationForm = () => {
   const onSubmit = async (data) => {
     try {
       const response = await registrationUserApi.register(data);
-      console.log('Зарегистрированный пользователь:', response.data);
-      navigate('/authorization');
+      console.log("Зарегистрированный пользователь:", response.data);
+      navigate("/authorization");
     } catch (error) {
-      setServerError('Ошибка при регистрации, введенныe username и email уже используются');
-      console.error(error.response.data.message )
+      setServerError(
+        "Ошибка при регистрации, введенныe username и email уже используются"
+      );
+      console.error(error.response.data.message);
     }
-  }
+  };
 
   const renderError = (fieldName) => {
     return errors[fieldName] ? (
@@ -68,7 +70,11 @@ const RegistrationForm = () => {
         {/* Password */}
         <FieldContainer>
           <NameField>password</NameField>
-          <InputField {...register("password")} placeholder="1Sq_22qw" type="password" />
+          <InputField
+            {...register("password")}
+            placeholder="1Sq_22qw"
+            type="password"
+          />
         </FieldContainer>
         {renderError("password")}
 
@@ -108,7 +114,6 @@ const RegistrationForm = () => {
         {renderError("age")}
 
         {serverError && <MessegeValidation>{serverError}</MessegeValidation>}
-
 
         <ButtonRegistration type="submit">Register</ButtonRegistration>
       </ContainerRegisterForm>

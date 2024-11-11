@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { updateTodo } from '../../../api/tasks.api'; // Импортируйте функцию
+import { updateTodo } from '../../../api/tasks.api';
 import { tokenService } from '../../../services/tokenService';
 import {
   InputOutputContainer,
@@ -21,11 +21,10 @@ const EditTask = ({ task, onUpdate, onCancel }) => {
     }
     setError("");
 
-    // Проверяем, изменилось ли название задачи
     if (newTask.trim() === task.title) {
       console.log(`Название задачи не изменилось, обновление не требуется.`);
-      onCancel(); // Закрываем поле редактирования
-      return; // Выход из функции
+      onCancel();
+      return; 
     }
 
     const token = tokenService.getToken();

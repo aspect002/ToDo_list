@@ -9,7 +9,7 @@ export default function ButtonDelete({ onClick }) {
       <StyledButtonDelete
         aria-label="delete"
         size="small"
-        onClick={onClick} // Вызываем переданную функцию при клике
+        onClick={onClick}
         sx={{ color: "white" }}
       >
         <DeleteIcon fontSize="inherit" />

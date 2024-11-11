@@ -27,6 +27,7 @@ export const getAllTasks = async (isCompleted) => {
     });
     return response.data;
   } catch (error) {
+    console.error(error);
     throw error;
   }
 };
@@ -52,7 +53,7 @@ export const updateTodo = async (id, taskData, token) => {
     return response.data;
   } catch (error) {
     console.error(error);
-    throw error; 
+    throw error;
   }
 };
 
@@ -69,15 +70,15 @@ export const deleteTodo = async (id, token) => {
   }
 };
 
-// Функция для обновления свойства isCompleted задачи по ID
+// Функция для зачеркивания по свойству isCompleted
 export const toggleTodoCompletion = async (id, token) => {
   try {
-    const response = await apiTasks.patch(`/todos/${id}/isCompleted`, {}, { // Измените null на пустой объект
+    const response = await apiTasks.patch(`/todos/${id}/isCompleted`, {}, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return response.data; // Возвращаем обновленные данные задачи
+    return response.data;
   } catch (error) {
-    console.error('Ошибка обновления состояния задачи:', error);
-    throw error; // Пробрасываем ошибку для дальнейшей обработки
+    console.error(error);
+    throw error;
   }
 };

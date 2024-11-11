@@ -24,9 +24,7 @@ export const InputAddTask = styled.input`
   outline: none;
   border: 1px solid #053865e8;
   box-sizing: border-box;
-  bo
-
-  &:focus {
+  bo &:focus {
     border-color: #8c54ff;
   }
 `;

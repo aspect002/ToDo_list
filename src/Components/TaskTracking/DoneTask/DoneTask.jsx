@@ -1,17 +1,22 @@
 import React from "react";
-import { TaskText, CompletedTaskText, ButtonContainer, TaskContainer } from "./styled";
+import {
+  TaskText,
+  CompletedTaskText,
+  ButtonContainer,
+  TaskContainer,
+} from "./styled";
 import ButtonEdit from "../../../Utils/TaskTrackingUtils/ButtonEdit/ButtonEdit";
-import DeleteTask from "../DeleteTask/DeleteTask"; // Импортируйте компонент удаления
-import { toggleTodoCompletion } from '../../../api/tasks.api'; // Импортируйте функцию переключения
-import { tokenService } from '../../../services/tokenService';
+import DeleteTask from "../DeleteTask/DeleteTask";
+import { toggleTodoCompletion } from "../../../api/tasks.api";
+import { tokenService } from "../../../services/tokenService";
 
 const DoneTask = ({ task, onToggle, onEdit, onDelete }) => {
   const handleToggleCompletion = async () => {
-    const token = tokenService.getToken(); // Получите токен
+    const token = tokenService.getToken();
     try {
-      const updatedTask = await toggleTodoCompletion(task.id, token); // Вызовите функцию переключения
+      const updatedTask = await toggleTodoCompletion(task.id, token);
       onToggle(updatedTask);
-       console.log(`Задача обновлена:`, updatedTask);
+      console.log(`Задача обновлена:`, updatedTask);
     } catch (error) {
       console.error("Ошибка при переключении завершенности задачи:", error);
     }
@@ -31,7 +36,7 @@ const DoneTask = ({ task, onToggle, onEdit, onDelete }) => {
             onEdit();
           }}
         />
-        <DeleteTask taskId={task.id} onDelete={onDelete} /> {/* Передайте onDelete */}
+        <DeleteTask taskId={task.id} onDelete={onDelete} />{" "}
       </ButtonContainer>
     </TaskContainer>
   );

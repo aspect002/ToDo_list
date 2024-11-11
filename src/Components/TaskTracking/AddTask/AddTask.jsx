@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { createTodo } from '../../../api/tasks.api';
-import { tokenService } from '../../../services/tokenService';
+import { createTodo } from "../../../api/tasks.api";
+import { tokenService } from "../../../services/tokenService";
 import {
   AddTaskContainer,
   InputAddTaskWrapper,
@@ -10,17 +10,20 @@ import {
   ErrorMessage,
 } from "./styled";
 
-
-
 const AddTask = ({ onAdd }) => {
-  const {register,handleSubmit,formState: { errors },reset,} = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
   const onSubmit = async (data) => {
     if (data.task.trim()) {
       const token = tokenService.getToken();
       try {
         const newTask = await createTodo({ title: data.task }, token);
-        console.log('createTodo Созданная задача:', newTask)
+        console.log("createTodo Созданная задача:", newTask);
         onAdd(newTask);
         reset();
       } catch (error) {

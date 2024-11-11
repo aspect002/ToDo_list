@@ -1,4 +1,3 @@
-// src/Components/Authorization/SignUpButton/SignUpButton.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { SignUpContainer, SignUpText, SignUpLink } from "./styled";

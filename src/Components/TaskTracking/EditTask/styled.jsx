@@ -17,11 +17,10 @@ export const InputField = styled.input`
   font-size: 16px;
   flex-grow: 1;
   margin-right: 8px;
-
 `;
 
 export const StyledButtonUpdate = styled.button`
-  padding: 10px 15px; 
+  padding: 10px 15px;
   background-color: #0be712;
   color: white;
   border: none;
@@ -38,5 +37,5 @@ export const ErrorText = styled.span`
   margin-top: 8px;
   width: 100%;
   text-align: center;
-  font-weight:bolder;
+  font-weight: bolder;
 `;

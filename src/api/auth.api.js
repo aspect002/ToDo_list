@@ -14,16 +14,15 @@ const apiUser = axios.create({
 //-------------------регистрация---------------//
 export const registrationUserApi = {
   register: async (userData) => {
-    try{
-        const response = await apiUser.post('/users/register', userData);
-    return response;
-    } catch(error){
+    try {
+      const response = await apiUser.post('/users/register', userData);
+      return response;
+    } catch (error) {
       throw error;
     }
 
   },
-};
-;;;;
+}
 //--------авторизация------------//
 export const authorizationUserApi = {
   login: async (userData) => {

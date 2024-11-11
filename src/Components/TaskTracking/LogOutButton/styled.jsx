@@ -7,8 +7,6 @@ export const LogOutContainer = styled.div`
   gap: 5px;
 `;
 
-
-
 export const LogOutLink = styled.a`
   text-decoration: underline;
   cursor: pointer;
