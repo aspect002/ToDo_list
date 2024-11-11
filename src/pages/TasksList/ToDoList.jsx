@@ -9,21 +9,23 @@ import { getAllTasks } from '../../api/tasks.api';
 ;;
 const ToDolist = () => {
   const [fetchedTasks, setFetchedTasks] = useState([]);
-
+;;;
   const fetchTasks = async () => {
+    console.log('Fetching tasks...');
     try {
-      const data = await getAllTasks();
-      setFetchedTasks(data || []);
+        const data = await getAllTasks();
+        console.log('Tasks fetched:', data);
+        setFetchedTasks(data || []);
     } catch (error) {
-      console.error(error.response.data.message);
+        console.error(error.response ? error.response.data.message : error.message);
     }
-  };
+};
 
   const { handleDeleteTask, handleUpdateTask, handleAddTask } = UseTaskManager(setFetchedTasks);
 
   useEffect(() => {
     console.log('Компонент монтируется, вызываем getAllTasks');
-    fetchTasks(); // Этот запрос выполнится только один раз при монтировании компонента
+    fetchTasks(); 
   }, []);
 
   return (

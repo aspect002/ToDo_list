@@ -1,17 +1,19 @@
+import { useCallback } from 'react';
+
 const UseTaskManager = (setFetchedTasks) => {
-  const handleAddTask = (newTask) => {
+  const handleAddTask = useCallback((newTask) => {
     setFetchedTasks((prevTasks) => [...prevTasks, newTask]);
-  };
+  }, [setFetchedTasks]);
 
-  const handleDeleteTask = (id) => {
+  const handleDeleteTask = useCallback((id) => {
     setFetchedTasks((prevTasks) => prevTasks.filter(task => task.id !== id));
-  };
+  }, [setFetchedTasks]);
 
-  const handleUpdateTask = (updatedTask) => {
+  const handleUpdateTask = useCallback((updatedTask) => {
     setFetchedTasks((prevTasks) =>
       prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
     );
-  };
+  }, [setFetchedTasks]);
 
   return {
     handleAddTask,

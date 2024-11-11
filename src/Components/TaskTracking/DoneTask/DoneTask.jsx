@@ -2,10 +2,23 @@ import React from "react";
 import { TaskText, CompletedTaskText, ButtonContainer, TaskContainer } from "./styled";
 import ButtonEdit from "../../../Utils/TaskTrackingUtils/ButtonEdit/ButtonEdit";
 import DeleteTask from "../DeleteTask/DeleteTask"; // Импортируйте компонент удаления
+import { toggleTodoCompletion } from '../../../api/tasks.api'; // Импортируйте функцию переключения
+import { tokenService } from '../../../services/tokenService';
 
 const DoneTask = ({ task, onToggle, onEdit, onDelete }) => {
+  const handleToggleCompletion = async () => {
+    const token = tokenService.getToken(); // Получите токен
+    try {
+      const updatedTask = await toggleTodoCompletion(task.id, token); // Вызовите функцию переключения
+      onToggle(updatedTask);
+       console.log(`Задача обновлена:`, updatedTask);
+    } catch (error) {
+      console.error("Ошибка при переключении завершенности задачи:", error);
+    }
+  };
+
   return (
-    <TaskContainer onClick={onToggle}>
+    <TaskContainer onClick={handleToggleCompletion}>
       {task.isCompleted ? (
         <CompletedTaskText>{task.title}</CompletedTaskText>
       ) : (
@@ -18,7 +31,7 @@ const DoneTask = ({ task, onToggle, onEdit, onDelete }) => {
             onEdit();
           }}
         />
-        <DeleteTask taskId={task.id} onDelete={onDelete} /> {/* Передаем onDelete */}
+        <DeleteTask taskId={task.id} onDelete={onDelete} /> {/* Передайте onDelete */}
       </ButtonContainer>
     </TaskContainer>
   );
