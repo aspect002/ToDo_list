@@ -5,6 +5,12 @@ export const LogOutContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 5px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
 `;
 
 export const LogOutLink = styled.a`
