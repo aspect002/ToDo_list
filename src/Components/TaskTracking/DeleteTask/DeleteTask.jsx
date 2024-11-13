@@ -11,7 +11,7 @@ const DeleteTask = ({ taskId, onDelete }) => {
       console.log(`Задача удалена:`, deletedTask);
       onDelete(taskId);
     } catch (error) {
-      console.error(error);
+      console.error("Ошибка при удалении задачи:", error);
     }
   };
 

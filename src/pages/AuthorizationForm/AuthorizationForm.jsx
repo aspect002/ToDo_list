@@ -32,8 +32,14 @@ const AuthorizationForm = () => {
       console.log("Token: ", response.token);
       navigate("/tasks");
     } catch (error) {
-      setServerError("Такого пользователя нет!");
-      console.error(error.message);
+      if (error.response && error.response.data.message) {
+        if (error.response.data.message === "Такого пользователя нет!") {
+          setServerError("Такого пользователя нет!");
+        } else {
+          setServerError("Неправильный пароль");
+        }
+      }
+
     }
   };
   return (
@@ -54,7 +60,9 @@ const AuthorizationForm = () => {
 
         <FieldContainer>
           <Label htmlFor="password">Password</Label>
-          <InputField {...register("password")} placeholder="1Sq_22qw" />
+          <InputField
+          type="password"
+          {...register("password")} placeholder="1Sq_22qw" />
           {errors.password && (
             <MessegeValidation>{errors.password.message}</MessegeValidation>
           )}
