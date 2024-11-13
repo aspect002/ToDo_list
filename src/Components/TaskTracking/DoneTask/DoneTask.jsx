@@ -36,7 +36,12 @@ const DoneTask = ({ task, onToggle, onEdit, onDelete }) => {
             onEdit();
           }}
         />
-        <DeleteTask taskId={task.id} onDelete={onDelete} />
+   <DeleteTask
+  taskId={task.id}
+  onDelete={() => {
+    onDelete(task.id);
+  }}
+/>
       </ButtonContainer>
     </TaskContainer>
   );

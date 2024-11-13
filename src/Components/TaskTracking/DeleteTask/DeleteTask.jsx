@@ -4,7 +4,8 @@ import { deleteTodo } from "../../../api/tasks.api";
 import { tokenService } from "../../../services/tokenService";
 
 const DeleteTask = ({ taskId, onDelete }) => {
-  const handleDelete = async () => {
+  const handleDelete = async (e) => {
+    e.stopPropagation();
     const token = tokenService.getToken();
     try {
       const deletedTask = await deleteTodo(taskId, token);

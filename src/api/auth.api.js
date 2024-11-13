@@ -1,33 +1,22 @@
-import axios from 'axios';
+import axiosInstance from './axiosInstance';
 
-const API_BASE_URL = 'https://todo-redev.herokuapp.com/api';
-
-const apiUser = axios.create({
-  baseURL: API_BASE_URL,
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-  },
-});
-
-
-//-------------------регистрация---------------//
+// Регистрация пользователя
 export const registrationUserApi = {
   register: async (userData) => {
     try {
-      const response = await apiUser.post('/users/register', userData);
+      const response = await axiosInstance.post('/users/register', userData);
       return response;
     } catch (error) {
       throw error;
     }
-
   },
 }
-//--------авторизация------------//
+
+// Авторизация пользователя
 export const authorizationUserApi = {
   login: async (userData) => {
     try {
-      const response = await apiUser.post('/auth/login', userData);
+      const response = await axiosInstance.post('/auth/login', userData);
       return response.data;
     } catch (error) {
       throw error;
