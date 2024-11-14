@@ -1,20 +1,12 @@
-import axiosInstance from './axiosInstance';
-import { tokenService } from '../services/tokenService';
-
+import axiosTasksInstance from './axiosTasksInstance';
 
 export const getAllTasks = async (isCompleted) => {
   try {
-    const token = tokenService.getToken();
     const params = {};
     if (isCompleted !== undefined) {
       params.isCompleted = isCompleted;
     }
-    const response = await axiosInstance.get('/todos', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-      params,
-    });
+    const response = await axiosTasksInstance.get('/todos', { params });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -22,14 +14,9 @@ export const getAllTasks = async (isCompleted) => {
   }
 };
 
-// Создание новой задачи
-export const createTodo = async (taskData, token) => {
+export const createTodo = async (taskData) => {
   try {
-    const response = await axiosInstance.post('/todos', taskData, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-    });
+    const response = await axiosTasksInstance.post('/todos', taskData);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -38,13 +25,9 @@ export const createTodo = async (taskData, token) => {
 };
 
 // Обновление названия существующей задачи
-export const updateTodo = async (taskId, taskData, token) => {
+export const updateTodo = async (taskId, taskData) => {
   try {
-    const response = await axiosInstance.patch(`/todos/${taskId}`, taskData, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-    });
+    const response = await axiosTasksInstance.patch(`/todos/${taskId}`, taskData);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -53,13 +36,9 @@ export const updateTodo = async (taskId, taskData, token) => {
 };
 
 // Удаление задачи
-export const deleteTodo = async (taskId, token) => {
+export const deleteTodo = async (taskId) => {
   try {
-    const response = await axiosInstance.delete(`/todos/${taskId}`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-    });
+    const response = await axiosTasksInstance.delete(`/todos/${taskId}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -68,13 +47,9 @@ export const deleteTodo = async (taskId, token) => {
 };
 
 // Переключение на зачеркивание
-export const toggleTodoCompletion = async (taskId, token) => {
+export const toggleTodoCompletion = async (taskId) => {
   try {
-    const response = await axiosInstance.patch(`/todos/${taskId}/isCompleted`, {}, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-    });
+    const response = await axiosTasksInstance.patch(`/todos/${taskId}/isCompleted`, {});
     return response.data;
   } catch (error) {
     console.error(error);
