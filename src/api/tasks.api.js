@@ -1,8 +1,7 @@
-// src/api/tasks.api.js
 import axiosInstance from './axiosInstance';
 import { tokenService } from '../services/tokenService';
 
-// Получение всех задач
+
 export const getAllTasks = async (isCompleted) => {
   try {
     const token = tokenService.getToken();

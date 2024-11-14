@@ -1,4 +1,4 @@
-import axiosInstance from './axiosInstance';
+import axiosInstance from "./axiosInstance";
 
 // Регистрация пользователя
 export const registrationUserApi = {
@@ -6,6 +6,7 @@ export const registrationUserApi = {
     try {
       const response = await axiosInstance.post('/users/register', userData);
       return response;
+
     } catch (error) {
       throw error;
     }
@@ -16,9 +17,14 @@ export const registrationUserApi = {
 export const authorizationUserApi = {
   login: async (userData) => {
     try {
-      const response = await axiosInstance.post('/auth/login', userData);
+      const loginUrl = '/auth/login';
+      console.log("Logging in at:", loginUrl);
+      console.log("User data:", userData);
+
+      const response = await axiosInstance.post(loginUrl, userData);
       return response.data;
     } catch (error) {
+      console.error("Login error:", error.response ? error.response.data : error.message);
       throw error;
     }
   },
