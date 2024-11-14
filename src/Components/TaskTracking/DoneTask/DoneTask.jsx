@@ -7,7 +7,7 @@ import {
 } from "./styled";
 import ButtonEdit from "../../../Utils/TaskTrackingUtils/ButtonEdit/ButtonEdit";
 import DeleteTask from "../DeleteTask/DeleteTask";
-import { toggleTodoCompletion } from "../../../api/tasks.api";
+import { toggleTodoCompletion } from "../../../api/authWithTasks.api";
 import { tokenService } from "../../../services/tokenService";
 
 const DoneTask = ({ task, onToggle, onEdit, onDelete }) => {

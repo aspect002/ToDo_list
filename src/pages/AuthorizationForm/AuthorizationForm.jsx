@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "../../Utils/AuthorizationUtils/validationSchema";
 import SignUpButton from "../../Components/Authorization/SignUpButton/SignUpButton";
 import { useNavigate } from "react-router-dom";
-import { authorizationUserApi } from "../../api/auth.api";
+import { authorizationUserApi } from "../../api/authWithTasks.api";
 import { tokenService } from "../../services/tokenService";
 import {
   ContainerAuthorizationForm,

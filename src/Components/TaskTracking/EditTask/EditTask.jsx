@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { updateTodo } from '../../../api/tasks.api';
+import { updateTodo } from '../../../api/authWithTasks.api';
 import { tokenService } from '../../../services/tokenService';
 import {
   InputOutputContainer,
@@ -24,7 +24,7 @@ const EditTask = ({ task, onUpdate, onCancel }) => {
     if (newTask.trim() === task.title) {
       console.log(`Название задачи не изменилось, обновление не требуется.`);
       onCancel();
-      return; 
+      return;
     }
 
     const token = tokenService.getToken();

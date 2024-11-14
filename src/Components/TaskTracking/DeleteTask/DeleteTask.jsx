@@ -1,6 +1,6 @@
 import React from "react";
 import ButtonDelete from "../../../Utils/TaskTrackingUtils/ButtonDelete/ButtonDelete";
-import { deleteTodo } from "../../../api/tasks.api";
+import { deleteTodo } from "../../../api/authWithTasks.api";
 import { tokenService } from "../../../services/tokenService";
 
 const DeleteTask = ({ taskId, onDelete }) => {

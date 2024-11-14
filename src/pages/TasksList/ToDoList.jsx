@@ -5,7 +5,7 @@ import { ToDoListStyled, DoWorkText, ContainerLogOutButton } from "./styled";
 import UseTaskManager from "../../Hooks/TaskTrackingHooks/UseTaskManager/UseTaskManager";
 import withLogger from "../../HOCs/loggingTaskTracking/withLogger";
 import LogOutButton from "../../Components/TaskTracking/LogOutButton/LogOutButton";
-import { getAllTasks } from '../../api/tasks.api';
+import { getAllTasks } from '../../api/authWithTasks.api';
 ;;
 const ToDolist = () => {
   const [fetchedTasks, setFetchedTasks] = useState([]);
@@ -25,7 +25,7 @@ const ToDolist = () => {
 
   useEffect(() => {
     console.log('Компонент монтируется, вызываем getAllTasks');
-    fetchTasks(); 
+    fetchTasks();
   }, []);
 
   return (

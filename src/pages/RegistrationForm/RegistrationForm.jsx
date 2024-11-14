@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "../../Utils/RegistrationUtils/validationSchema/validationSchema";
-import { registrationUserApi } from "../../api/auth.api";
+import { registrationUserApi } from "../../api/authWithTasks.api";
 import {
   ContainerRegisterForm,
   FieldContainer,
